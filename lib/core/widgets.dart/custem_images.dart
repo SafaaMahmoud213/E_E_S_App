@@ -10,13 +10,7 @@ class CustomImage extends StatelessWidget {
   double? height;
   BoxFit? fit;
   Color? color;
-  CustomImage({
-    super.key,
-    this.height,
-    this.fit,
-    required this.url,
-    this.width,
-  });
+  CustomImage({super.key, this.height, this.fit, required this.url, this.width, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +27,16 @@ class CustomImage extends StatelessWidget {
       );
     } else if (url.endsWith("svg")) {
       return SvgPicture.asset(
-        "assetNames/icons/$url",
+        "assets/icons/$url",
         width: width?.w,
+        color: color,
         height: height?.h,
       );
     }
     return Image.asset(
       url,
       height: height?.h,
+      color: color,
       width: width?.w,
       fit: fit,
       errorBuilder:
