@@ -6,6 +6,7 @@ class AppImages {
   static const String logo = "assets/images/logo.png";
   static const String logo2 = "assets/images/Logo2.png";
   static const String animatLogo = "assets/animation/logo.json";
+  static const String animatLogo1 = "assets/animation/logo1.json";
   // static const String profile = "assets/images/profile.svg";
   static const String intro = "assets/icons/intro.svg";
   // ignore: constant_identifier_names

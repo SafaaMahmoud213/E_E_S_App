@@ -1,4 +1,5 @@
-import 'package:adaptive_theme/adaptive_theme.dart' show AdaptiveTheme, AdaptiveThemeMode;
+import 'package:adaptive_theme/adaptive_theme.dart'
+    show AdaptiveTheme, AdaptiveThemeMode;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,21 +14,25 @@ import 'package:my_app/controller/pinput_cubit/pinput_cubit.dart';
 import 'package:my_app/controller/screen_nav_cubit/screen_nav_cubit.dart';
 import 'package:my_app/controller/signup_cubit/signup_cubit.dart';
 import 'package:my_app/core/cach/cache_helper.dart';
+import 'package:my_app/core/service/service_locator.dart';
 import 'package:my_app/core/theme/dart_theme.dart' show darkTheme;
 import 'package:my_app/core/theme/light_theme.dart' show lightTheme;
 import 'package:my_app/core/utils/navigator.dart';
-import 'package:my_app/view/screens/onboarding_screen.dart';
+import 'package:my_app/features/splash_screen/presentation/view/splash_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
   Bloc.observer = AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
+  setUpServiceLocator();
   await CacheHelper.cachInitialization();
   await ScreenUtil.ensureScreenSize();
   await EasyLocalization.ensureInitialized();
 
   HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: HydratedStorageDirectory((await getTemporaryDirectory()).path),
+    storageDirectory: HydratedStorageDirectory(
+      (await getTemporaryDirectory()).path,
+    ),
   );
   runApp(
     EasyLocalization(
@@ -76,7 +81,7 @@ class MyApp extends StatelessWidget {
                   supportedLocales: context.supportedLocales,
                   locale: context.locale,
 
-                  home: OnboardingScreen(),
+                  home: SplashScreen(),
                 ),
               );
             },
