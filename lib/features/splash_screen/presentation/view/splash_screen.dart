@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:my_app/core/cach/cache_helper.dart';
 import 'package:my_app/core/constant/images.dart';
+import 'package:my_app/core/service/service_locator.dart';
+import 'package:my_app/features/botton_nav_screen/presentation/view/home_intro.dart';
 import 'package:my_app/features/onboarding/presentation/view/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,12 +22,21 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+    bool isVisited = getIt<CacheHelper>().getData(key: "isVisited") ?? false;
+
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const OnboardingScreen()),
-        );
+        if (isVisited == true) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeIntro()),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+          );
+        }
       }
     });
   }

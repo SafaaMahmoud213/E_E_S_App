@@ -9,6 +9,8 @@ import 'package:my_app/features/auth/presentation/view/login.dart';
 import 'package:my_app/features/onboarding/presentation/widget/onboarding_body.dart';
 import 'package:my_app/generated/locale_keys.g.dart';
 
+import '../../../../core/cach/cache_helper.dart' show CacheHelper;
+import '../../../../core/service/service_locator.dart' show getIt;
 import '../../../../core/widgets/button.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -80,6 +82,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           curve: Curves.linear,
                         );
                       } else {
+                        getIt<CacheHelper>().setData(
+                          key: "isVisited",
+                          value: true,
+                        );
                         AppNavigator().pushReplaceMent(page: LogInScreen());
                       }
                     },

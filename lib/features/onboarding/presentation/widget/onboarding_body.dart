@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/controller/onboarding_cubit/onboarging_cubit.dart';
+import 'package:my_app/core/cach/cache_helper.dart';
 import 'package:my_app/core/constant/colors.dart';
 import 'package:my_app/core/constant/images.dart';
+import 'package:my_app/core/service/service_locator.dart';
 import 'package:my_app/core/utils/extensions_sizedbox.dart';
 import 'package:my_app/core/utils/navigator.dart';
 import 'package:my_app/core/widgets/custem_images.dart';
 import 'package:my_app/features/botton_nav_screen/presentation/view/home_intro.dart';
 import 'package:my_app/generated/locale_keys.g.dart';
 
-// ignore: must_be_immutable
 class OnboardingBody extends StatefulWidget {
   OnboardingBody({super.key, this.controller});
   PageController? controller;
@@ -47,6 +48,10 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                       ),
                       InkWell(
                         onTap: () {
+                          getIt<CacheHelper>().setData(
+                            key: "isVisited",
+                            value: true,
+                          );
                           AppNavigator().pushReplaceMent(page: HomeIntro());
                         },
                         child: Text(

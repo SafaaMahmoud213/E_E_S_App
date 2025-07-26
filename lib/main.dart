@@ -25,7 +25,7 @@ void main() async {
   Bloc.observer = AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   setUpServiceLocator();
-  await CacheHelper.cachInitialization();
+  await getIt<CacheHelper>().cachInitialization();
   await ScreenUtil.ensureScreenSize();
   await EasyLocalization.ensureInitialized();
 
