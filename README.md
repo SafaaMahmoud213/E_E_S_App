@@ -13,7 +13,7 @@ A detailed guide for multiple platforms setup could be find [here](https://flutt
 ### Setup Project
 
 - Clone this repository using `git clone https://github.com/SafaaMahmoud213/E_E_S_App.git`.
-- `cd` into `my_app`.
+- `cd` into `EES App`.
 - `flutter pub get` to get all the dependencies.
 
 ### Running the app
