@@ -23,14 +23,11 @@ class SignUpPage1 extends StatefulWidget {
 }
 
 class _SignUpPage1State extends State<SignUpPage1> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
   Color? color;
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: context.read<SignupCubit>().formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -49,7 +46,7 @@ class _SignUpPage1State extends State<SignUpPage1> {
           AppTextForm(
             padding: EdgeInsets.only(right: 16.h, left: 16.h),
             keyboardType: TextInputType.name,
-            controller: _nameController,
+            controller: context.read<SignupCubit>().nameController,
             labelText: "ادخل اسمك ثلاثي",
             prefixIcon: Icon(Icons.person_2_outlined),
             validator: (value) => AppValidator.validateName(value!),
@@ -68,9 +65,12 @@ class _SignUpPage1State extends State<SignUpPage1> {
           ),
           12.hi,
           AppTextForm(
+            onChanged: (phone) {
+              context.read<SignupCubit>().phoneController.text = phone;
+            },
             padding: EdgeInsets.only(right: 16.h, left: 16.h),
             keyboardType: TextInputType.phone,
-            controller: _phoneController,
+            controller: context.read<SignupCubit>().phoneController,
             labelText: "ادخل رقم الموبايل",
             validator: (value) => AppValidator.validatePhone(value),
             prefixIcon: Icon(Icons.phone_iphone_rounded),
@@ -93,12 +93,11 @@ class _SignUpPage1State extends State<SignUpPage1> {
                     child: AppButton(
                       ismaximumSize: true,
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<SignupCubit>().signUp(
-                            _nameController.text,
-                            _phoneController.text,
-                          );
-                        }
+                        if (context
+                            .read<SignupCubit>()
+                            .formKey
+                            .currentState!
+                            .validate()) {}
                       },
                       isIcon: true,
                       icon: Icons.arrow_forward,

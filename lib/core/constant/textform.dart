@@ -11,6 +11,7 @@ class AppTextForm extends StatelessWidget {
   double? width;
   double? height;
   EdgeInsetsGeometry? padding;
+  Function(String)? onChanged;
   AppTextForm({
     super.key,
     required this.labelText,
@@ -18,6 +19,7 @@ class AppTextForm extends StatelessWidget {
     this.prefixIcon,
     this.width,
     this.height,
+    this.onChanged,
     this.controller,
     this.validator,
     this.keyboardType,
@@ -29,6 +31,7 @@ class AppTextForm extends StatelessWidget {
       padding: padding ?? EdgeInsets.zero,
       child: TextFormField(
         controller: controller,
+        onChanged: onChanged,
         keyboardType: keyboardType,
         validator: validator,
         autovalidateMode: AutovalidateMode.onUserInteraction,

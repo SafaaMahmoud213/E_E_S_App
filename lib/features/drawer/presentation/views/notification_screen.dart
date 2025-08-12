@@ -14,6 +14,11 @@ class NewNotification extends StatefulWidget {
 
 class _NewNotificationState extends State<NewNotification> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
